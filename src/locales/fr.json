@@ -13,6 +13,14 @@
   "profile": {
     "name": "Coucou, moi c'est YOHANN!",
     "nameReturning": "Re-bonjour, moi c'est YOHANN!",
+    "nameMorning": "Bonjour, moi c'est YOHANN!",
+    "nameMorningReturning": "Re-bonjour, moi c'est YOHANN!",
+    "nameAfternoon": "Bon après-midi, moi c'est YOHANN!",
+    "nameAfternoonReturning": "Bon retour, moi c'est YOHANN!",
+    "nameEvening": "Bonsoir, moi c'est YOHANN!",
+    "nameEveningReturning": "Re-bonsoir, moi c'est YOHANN!",
+    "nameNight": "Il est tard, moi c'est YOHANN!",
+    "nameNightReturning": "Encore debout ? Moi c'est YOHANN!",
     "title": "Mon nom complet est Yohann CHAN CHEW HONG et dans mon petit coin d'internet!",
     "locationTitle": "Localisation",
     "location": "Paris, France"

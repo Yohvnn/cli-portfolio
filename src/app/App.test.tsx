@@ -79,6 +79,7 @@ vi.mock('react-i18next', () => ({
             if (options?.returnObjects) {
                 return translations[key] || [];
             }
+            if (key.startsWith('profile.name')) return 'Yohann';
             return translations[key] || key;
         },
     }),

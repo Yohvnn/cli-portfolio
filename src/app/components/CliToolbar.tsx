@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDarkMode } from "../hooks/useDarkMode";
 import { useLanguage } from "../hooks/useLanguage";
+import { useClock } from "../hooks/useClock";
 
 /**
  * Fixed CLI-style toolbar with dark/light mode toggle, language switch, and scroll-to-top.
@@ -11,6 +12,7 @@ export function CliToolbar() {
     const { isDark, toggle: toggleTheme } = useDarkMode();
     const { lang, toggle: toggleLang } = useLanguage();
     const [showTop, setShowTop] = useState(false);
+    const time = useClock();
 
     useEffect(() => {
         const onScroll = () => setShowTop(window.scrollY > 300);
@@ -26,10 +28,15 @@ export function CliToolbar() {
             className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background/90 backdrop-blur-sm"
         >
             <div className="max-w-4xl mx-auto flex items-center justify-between px-6 py-3">
-                {/* prompt prefix */}
-                <span className="text-accent text-[10px] sm:text-xs tracking-widest select-none">
-                    ~/ycch $
-                </span>
+                {/* prompt + live clock */}
+                <div className="flex items-center gap-3">
+                    <span className="text-accent text-[10px] sm:text-xs tracking-widest select-none">
+                        ~/ycch $
+                    </span>
+                    <span className="text-[10px] sm:text-xs opacity-40 select-none tabular-nums">
+                        {time}
+                    </span>
+                </div>
 
                 <div className="flex items-center gap-4 sm:gap-6">
                     {/* scroll to top */}
