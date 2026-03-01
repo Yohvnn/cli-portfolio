@@ -39,6 +39,7 @@ jobs:
         with:
           submodules: true
           lfs: false
+          persist-credentials: false
 
       - name: Build And Deploy
         id: builddeploy
