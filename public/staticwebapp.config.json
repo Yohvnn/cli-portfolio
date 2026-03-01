@@ -1,0 +1,21 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/assets/*",
+      "/gallery/*",
+      "/projects/*",
+      "/favicon-32x32.png",
+      "/robots.txt",
+      "/*.{css,js}",
+      "/*.{png,jpg,jpeg,gif,svg,webp,ico}",
+      "/*.{woff,woff2,ttf,otf}"
+    ]
+  },
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/index.html",
+      "statusCode": 200
+    }
+  }
+}
