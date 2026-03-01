@@ -1,0 +1,275 @@
+{
+  "nav": {
+    "home": "ACCUEIL",
+    "resume": "CURRICULUM VITAE",
+    "toolbox": "OUTILS",
+    "gallery": "GALERIE",
+    "about": "À PROPOS",
+    "contact": "Contact",
+    "goHome": "Aller à l'accueil",
+    "toggleNavigation": "Basculer la navigation",
+    "timerTooltip": "'Patience, tu verras bientôt des outils de minuterie ici.'"
+  },
+  "profile": {
+    "name": "Coucou, moi c'est YOHANN!",
+    "title": "Mon nom complet est Yohann CHAN CHEW HONG et dans mon petit coin d'internet!",
+    "locationTitle": "Localisation",
+    "location": "Paris, France"
+  },
+  "home": {
+    "aboutTitle": "À PROPOS DE MOI",
+    "aboutText": "Je suis un Data Scientist et Développeur en IA Gen localisé à Paris, France.\n\nJe conçois des outils numériques et solutions métier centrés sur le Web, l'UX/UI, et explore le storytelling visuel à travers la photographie et la vidéo, souvent entre quelques sorties en GRAVEL",
+    "educationTitle": "FORMATION",
+    "workTitle": "EXPÉRIENCE PROFESSIONNELLE",
+    "skillsTitle": "COMPÉTENCES",
+    "proficiencyTitle": "MAÎTRISE",
+    "toolsTitle": "OUTILS (EN DÉVELOPPEMENT)",
+    "toolsSubtitle": "Découvre ma collection d'utilitaires et d'applications.",
+    "viewToolbox": "Voir les outils",
+    "footerBuilt": "Construit avec <3 en Vue.js & Tailwind CSS",
+    "copyright": "© 2026 Yohann Chan Chew Hong",
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "strava": "Strava"
+    }
+  },
+  "toolbox": {
+    "title": "COLLECTION D'OUTILS",
+    "subtitle": "Une collection d'utilitaires et d'applications soigneusement réalisées",
+    "backToResume": "← Retour au CV",
+    "hawkMcp": {
+      "title": "HAWK MCP",
+      "desc": "Un puissant orchestrateur d'IA local utilisant MCP (Model Context Protocol) et Ollama. Fonctionne entièrement hors ligne sur ta machine, offrant un assistant en terminal capable de contrôler ton système, gérer des fichiers, lancer des applications, et plus encore.",
+      "github": "https://github.com/Yohvnn/hawk-mcp",
+      "figcaption": "Assistant IA en terminal avec contrôle système"
+    },
+    "hawkMobile": {
+      "title": "HAWK AI MOBILE",
+      "desc": "Une application mobile d'assistant personnel légère construite avec React Native et Expo, propulsée par Gemini AI de Google. Interface de chat moderne et épurée avec thèmes personnalisables et support multilingue.",
+      "github": "https://github.com/Yohvnn/hawkai-phone-app",
+      "figcaption1": "Interface de chat avec Gemini AI",
+      "figcaption2": "Thèmes et paramètres personnalisables"
+    },
+    "pixelWidgets": {
+      "title": "WIDGETS GOOGLE PIXEL",
+      "desc": "Une collection de widgets pour écran d'accueil Android inspirés de l'esthétique Pixel, construits avec Jetpack Glance.",
+      "github": "https://github.com/Yohvnn/ystudio-widgets",
+      "figcaption": "Widgets d'écran d'accueil style Pixel"
+    },
+    "pdf": {
+      "title": "OUTILS PDF",
+      "desc": "Compresser, découper et extraire des pages PDF, simplement et rapidement.",
+      "tags": [
+        "Vue 3",
+        "Python"
+      ],
+      "comingSoon": "BIENTÔT DISPONIBLE"
+    },
+    "tictactoe": {
+      "title": "MORPION",
+      "desc": "Un morpion minimal pour faire une pause, même en déplacement. Joue contre un ami ou l'ordinateur.",
+      "tags": [
+        "Vue 3"
+      ],
+      "comingSoon": "BIENTÔT DISPONIBLE"
+    },
+    "flipcoin": {
+      "title": "PILE OU FACE",
+      "desc": "Une pièce 3D pour t'aider à décider. Pile ou face ?",
+      "tags": [
+        "Vue 3"
+      ],
+      "comingSoon": "BIENTÔT DISPONIBLE"
+    },
+    "rag": {
+      "title": "RAG CHATBOT",
+      "desc": "Pose des questions à tes documents grâce à la recherche vectorielle et un assistant propulsé par LLM.",
+      "tags": [
+        "Next.js",
+        "FastAPI"
+      ],
+      "comingSoon": "BIENTÔT DISPONIBLE",
+      "figcaption1": "Téléverse des documents (PDF, TXT, DOCX, etc.)",
+      "figcaption2": "Pose des questions et obtiens des réponses"
+    },
+    "seeMore": "VOIR PLUS",
+    "comingSoonTitle": "BIENTÔT DISPONIBLE",
+    "comingSoonText": "Tu as besoin d'autres outils ? Contacte-moi pour qu'on en discute ou reviens plus tard pour de nouvelles fonctionnalités."
+  },
+  "gallery": {
+    "title": "GALERIE",
+    "subtitle": "Une sélection de mes photos en haute résolution. Pour toute utilisation, contacte‑moi au préalable.",
+    "back": "← Retour au CV",
+    "loading": "Chargement des photos…",
+    "photoDetails": "Détails de la photo",
+    "close": "Fermer",
+    "readingExif": "Lecture des EXIF…",
+    "exifError": "Échec de la lecture des données EXIF",
+    "camera": "Appareil photo :",
+    "lens": "Objectif :",
+    "focal": "Focale :",
+    "aperture": "Ouverture :",
+    "shutter": "Vitesse d'obturation :",
+    "iso": "ISO :",
+    "size": "Taille :",
+    "taken": "Date de prise :",
+    "gps": "GPS :",
+    "noPhotos": "Pas encore de photos. Remplis public/gallery/index.json avec des entrées d'images.",
+    "photoAlt": "Photo {number}"
+  },
+  "studio": {
+    "home": {
+      "title": "Studio créatif",
+      "subtitle": "Frontends assistés par IA, petits outils et projets photo.",
+      "ctaTools": "Explorer les outils",
+      "ctaGallery": "Voir la galerie",
+      "featuredTools": "Outils à la une",
+      "latestPhotos": "Dernières photos",
+      "viewAll": "Tout voir",
+      "aboutHeading": "À propos de Yohann.",
+      "bioLabel": "BIO"
+    },
+    "hero": {
+      "headline": "Studio virtuel et numérique pour prototyper des projets personnels.",
+      "subtext": "Une plateforme dédiée à livrer des outils utiles et des photos.",
+      "buttonName": "Explorer maintenant",
+      "hideShowButton": "Afficher/Masquer",
+      "alignLeftButton": "Aligner à gauche",
+      "alignRightButton": "Aligner à droite",
+      "displayText": "Tous les textes affichés au premier plan"
+    },
+    "common": {
+      "hide": "Masquer",
+      "show": "Afficher"
+    }
+  },
+  "about": {
+    "title": "À PROPOS DU STUDIO",
+    "description": "Un espace pour partager mes créations, explorer des designs frontends et partager ma passion pour la photographie.",
+    "servicesTitle": "Services",
+    "services": [
+      "Prototypage front-end",
+      "Expérimentation IA/RAG",
+      "Photographie et média",
+      "Plus à venir..."
+    ],
+    "stackTitle": "Stack",
+    "stack": [
+      "Vue.js",
+      "Tailwind CSS",
+      "Vite",
+      "i18n",
+      "CDN pour des images en haute résolution"
+    ],
+    "contactTitle": "Contact",
+    "contactText": "Contacte-moi pour des collaborations ou des idées de projets.",
+    "creditsPhotos": "Toutes les photos et vidéos présentées ici ont été capturées par moi lors de mes diverses aventures."
+  },
+  "education": {
+    "items": [
+      {
+        "date": "2026. 08",
+        "title": "MSC APPLIQUÉ EN DATA SCIENCE & IA",
+        "org": "DATA SCIENCETECH INSTITUTE - SCHOOL OF ENGINEERING"
+      },
+      {
+        "date": "2024. 08",
+        "title": "LICENCE EN ÉCONOMIE ET GESTION (PARCOURS CMI DATA SCIENCE POUR LES SCIENCES SOCIALES)",
+        "org": "UNIVERSITÉ PARIS X"
+      },
+      {
+        "date": "2021. 08",
+        "title": "BACCALAURÉAT GÉNÉRAL EN MATHÉMATIQUES ET ÉCONOMIE",
+        "org": "LYCÉE FRANÇAIS DE TAMATAVE"
+      }
+    ]
+  },
+  "work": {
+    "items": [
+      {
+        "date": "2024 - 2026",
+        "title": "APPRENTI INGÉNIEUR D'ÉTUDES POUR DES SOLUTIONS D'IA GÉNÉRATIVE",
+        "description": "Contribuer au renouveau du SI avec la mise en place de 10 cas d'usage IA Gen métier et collaborateur en production. Conception d'API en FastAPI responsable du micro service d'orchestration du workflow des cas d'usages suivant une architecture hexagonale. Développement front TypeScript/Vue des micro-fronts de la plateforme IA Gen. Gestion de versions avec GitLab, debugs, écriture de tests unitaires pour assurer la qualité du code et run des pipelines CI. Veille technologique continue sur les actualités autour de l'IA Gen.",
+        "org": "CRÉDIT AGRICOLE PERSONAL FINANCE & MOBILITY (CAPFM)"
+      },
+      {
+        "date": "2024. 07",
+        "title": "RESPONSABLE AMAZON SELLER CENTRAL",
+        "description": "Gestion de listings via Seller Central, optimisation autonome à partir de fiches produits et données de ventes.",
+        "org": "BEAUTÉ INSOLENTE PARIS"
+      },
+      {
+        "date": "2024. 03",
+        "title": "WEBMASTER",
+        "description": "Création du site Beemada.online (WordPress, HTML/CSS), intégration et mise en ligne.",
+        "org": "EXCELSIOR, BEEMADA"
+      }
+    ]
+  },
+  "skills": {
+    "titles": {
+      "programming": "PROGRAMMATION & DATA SCIENCE",
+      "database": "BASES DE DONNÉES & GESTION DES DONNÉES",
+      "web": "DÉVELOPPEMENT WEB & SYSTÈMES",
+      "media": "MÉDIA & DESIGN"
+    },
+    "programming": [
+      "C",
+      "C++",
+      "Python",
+      "Java",
+      "R",
+      "TensorFlow",
+      "PyTorch",
+      "RDF",
+      "SPARQL"
+    ],
+    "database": [
+      "SQL",
+      "PL/SQL",
+      "MariaDB",
+      "MySQL",
+      "Neo4j",
+      "SAS",
+      "AWS",
+      "Git",
+      "Bash"
+    ],
+    "web": [
+      "Vue.js",
+      "Nest",
+      "TypeScript",
+      "Tailwind",
+      "Lambda",
+      "RAG",
+      "Vectorisation"
+    ],
+    "media": [
+      "Premiere Pro",
+      "Lightroom",
+      "Photoshop",
+      "Figma",
+      "Canva",
+      "WordPress"
+    ]
+  },
+  "app": {
+    "darkMode": "dark-mode",
+    "loading": "Chargement.",
+    "videoNotSupported": "Votre navigateur ne supporte pas la balise vidéo.",
+    "brand": "YohannStudio.",
+    "loadingStatus": "Statut de chargement",
+    "light": "Clair",
+    "dark": "Sombre",
+    "toggleDarkMode": "Basculer le mode sombre",
+    "toggleLanguage": "Changer de langue",
+    "contactEmail": "Contacter par email",
+    "underConstruction": "🚧 En Construction — Ce site est en cours de développement."
+  },
+  "notFound": {
+    "title": "Page Introuvable",
+    "description": "La page que tu recherches n'existe pas.",
+    "backToStudio": "RETOUR AU STUDIO"
+  }
+}

@@ -1,0 +1,161 @@
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * 3-COLOR PALETTE
+ * --bg:      shade of black  (ink / void)
+ * --fg:      retro paper     (warm aged paper)
+ * --accent:  japanese toy orange (Bandai / Tamiya)
+ */
+
+:root,
+.dark {
+  --font-size: 16px;
+  --background: #0a0a0a;
+  --foreground: #F2E8D5;
+  --accent: #E8541E;
+  --border: #F2E8D530;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --font-weight-light: 300;
+  --radius: 0;
+}
+
+.light {
+  --background: #F2E8D5;
+  --foreground: #0a0a0a;
+  --accent: #E8541E;
+  --border: #0a0a0a30;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  /* Focus ring — visible only for keyboard (focus-visible).
+     1px solid accent + offset = terminal-style highlight */
+  :focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  html {
+    font-size: var(--font-size);
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--background);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    font-weight: var(--font-weight-normal);
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    line-height: 1.4;
+  }
+
+  h4 {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  label,
+  button,
+  input {
+    font-size: 1rem;
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+
+  /* Hide native scrollbar completely */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+  }
+
+  /* Interactive elements get pointer */
+  a,
+  button {
+    cursor: pointer;
+  }
+
+  /* ─── Typing cursor blink ─── */
+  @keyframes blink {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .typing-cursor {
+    display: inline-block;
+    color: var(--text-color, var(--foreground));
+    animation: blink 1s step-start infinite;
+    margin-left: 1px;
+  }
+
+  /* Subtle link underline on hover */
+  a:hover {
+    text-decoration-skip-ink: auto;
+  }
+}

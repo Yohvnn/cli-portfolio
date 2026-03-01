@@ -1,0 +1,275 @@
+{
+  "nav": {
+    "home": "Home",
+    "resume": "RESUME",
+    "toolbox": "TOOLS",
+    "gallery": "GALLERY",
+    "about": "ABOUT",
+    "contact": "Contact",
+    "goHome": "Go to Home",
+    "toggleNavigation": "Toggle navigation",
+    "timerTooltip": "'Be patient, you will see timer tools here soon.'"
+  },
+  "profile": {
+    "name": "Hi, I'm YOHANN!",
+    "title": "My full name is Yohann CHAN CHEW HONG and welcome to my little corner of the internet!",
+    "locationTitle": "Location",
+    "location": "Paris, France"
+  },
+  "home": {
+    "aboutTitle": "ABOUT ME",
+    "aboutText": "I am a Data Scientist and GEN AI developer based in Paris, France.\n\nI create digital tools and business solutions across web, UX/UI, and explore visual storytelling through photography and video, often after a gravel ride",
+    "educationTitle": "EDUCATION",
+    "workTitle": "EXPERIENCE",
+    "skillsTitle": "SKILLS",
+    "proficiencyTitle": "Proficiency",
+    "toolsTitle": "Tools (Under development)",
+    "toolsSubtitle": "Explore my collection of utility tools and applications.",
+    "viewToolbox": "View Toolbox",
+    "footerBuilt": "Built with <3 in Vue.js & Tailwind CSS",
+    "copyright": "© 2026 Yohann Chan Chew Hong",
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "strava": "Strava"
+    }
+  },
+  "toolbox": {
+    "title": "TOOLS COLLECTION",
+    "subtitle": "A curated set of small, purposeful tools",
+    "backToResume": "← Back to Resume",
+    "hawkMcp": {
+      "title": "HAWK MCP",
+      "desc": "A powerful local AI orchestrator using MCP (Model Context Protocol) and Ollama. Runs entirely offline on your machine, providing a terminal-based assistant that can control your system, manage files, launch apps, and more.",
+      "github": "https://github.com/Yohvnn/hawk-mcp",
+      "figcaption": "Terminal-based AI assistant with system control"
+    },
+    "hawkMobile": {
+      "title": "HAWK AI MOBILE",
+      "desc": "A lightweight personal assistant mobile app built with React Native and Expo, powered by Google's Gemini AI. Features a clean, modern chat interface with customizable themes and multi-language support.",
+      "github": "https://github.com/Yohvnn/hawkai-phone-app",
+      "figcaption1": "Chat interface with Gemini AI",
+      "figcaption2": "Customizable themes and settings"
+    },
+    "pixelWidgets": {
+      "title": "GOOGLE PIXEL WIDGETS",
+      "desc": "A collection of Android Home Screen widgets inspired by the Pixel aesthetic, built using Jetpack Glance.",
+      "github": "https://github.com/Yohvnn/ystudio-widgets",
+      "figcaption": "Pixel-inspired home screen widgets"
+    },
+    "pdf": {
+      "title": "PDF TOOLS",
+      "desc": "Compress, split, and extract PDF pages. Fast and local.",
+      "tags": [
+        "Vue 3",
+        "Python"
+      ],
+      "comingSoon": "COMING SOON"
+    },
+    "tictactoe": {
+      "title": "TIC TAC TOE",
+      "desc": "A minimal Tic Tac Toe to unwind on the go. Play against a friend or the computer.",
+      "tags": [
+        "Vue 3"
+      ],
+      "comingSoon": "COMING SOON"
+    },
+    "flipcoin": {
+      "title": "FLIP COIN",
+      "desc": "A playful 3D coin to help you decide. Heads or tails?",
+      "tags": [
+        "Vue 3"
+      ],
+      "comingSoon": "COMING SOON"
+    },
+    "rag": {
+      "title": "RAG CHATBOT",
+      "desc": "Ask your documents questions with vector search and an LLM‑powered assistant.",
+      "tags": [
+        "Next.js",
+        "FastAPI"
+      ],
+      "comingSoon": "COMING SOON",
+      "figcaption1": "Upload documents (PDF, TXT, DOCX, etc.)",
+      "figcaption2": "Ask questions and get answers"
+    },
+    "seeMore": "SEE MORE",
+    "comingSoonTitle": "COMING SOON",
+    "comingSoonText": "More tools are in the works. Check back soon."
+  },
+  "gallery": {
+    "title": "GALLERY",
+    "subtitle": "A curated selection of my photography. High-res images served via CDN. If you wish to use any photo, please contact me first.",
+    "back": "← Back to Resume",
+    "loading": "Loading photos…",
+    "photoDetails": "Photo details",
+    "close": "Close",
+    "readingExif": "Reading EXIF…",
+    "exifError": "Failed to read EXIF data",
+    "camera": "Camera:",
+    "lens": "Lens:",
+    "focal": "Focal:",
+    "aperture": "Aperture:",
+    "shutter": "Shutter:",
+    "iso": "ISO:",
+    "size": "Size:",
+    "taken": "Taken:",
+    "gps": "GPS:",
+    "noPhotos": "No photos yet. Populate public/gallery/index.json with image entries.",
+    "photoAlt": "Photo {number}"
+  },
+  "studio": {
+    "home": {
+      "title": "Creative Studio",
+      "subtitle": "AI-assisted frontends, small tools, and photography projects.",
+      "ctaTools": "Explore Tools",
+      "ctaGallery": "View Gallery",
+      "featuredTools": "Featured Tools",
+      "latestPhotos": "Latest Photos",
+      "viewAll": "View All",
+      "aboutHeading": "About Yohann.",
+      "bioLabel": "BIO"
+    },
+    "hero": {
+      "headline": "A small studio prototyping thoughtful personal projects.",
+      "subtext": "A small portfolio focused on shipping useful tools, and photography.",
+      "buttonName": "Explore Now",
+      "hideShowButton": "Hide/Show",
+      "alignLeftButton": "Align Left",
+      "alignRightButton": "Align Right",
+      "displayText": "Every text displayed in the front"
+    },
+    "common": {
+      "hide": "Hide",
+      "show": "Show"
+    }
+  },
+  "about": {
+    "title": "ABOUT THE STUDIO",
+    "description": "A space to share my creations, explore frontends design, and share photography.",
+    "servicesTitle": "Services",
+    "services": [
+      "Front-end prototyping",
+      "AI/RAG experimentation",
+      "Photography and media",
+      "More is coming..."
+    ],
+    "stackTitle": "Tech Stack",
+    "stack": [
+      "Vue.js",
+      "Tailwind CSS",
+      "Vite",
+      "i18n",
+      "CDN for high-res images"
+    ],
+    "contactTitle": "Contact",
+    "contactText": "Reach out for collaborations or project ideas.",
+    "creditsPhotos": "All photos and videos showcased here are captured by me during my various adventures."
+  },
+  "education": {
+    "items": [
+      {
+        "date": "2026. 08",
+        "title": "MSC IN DATA SCIENCE & AI",
+        "org": "DATA SCIENCETECH INSTITUTE - SCHOOL OF ENGINEERING"
+      },
+      {
+        "date": "2024. 08",
+        "title": "BACHELOR'S IN ECONOMICS (DATA SCIENCE CMI ENGINEER TRACK)",
+        "org": "PARIS X UNIVERSITY"
+      },
+      {
+        "date": "2021. 08",
+        "title": "GENERAL BACCALAUREATE IN MATHEMATICS AND ECONOMICS",
+        "org": "FRENCH SCHOOL OF TAMATAVE"
+      }
+    ]
+  },
+  "work": {
+    "items": [
+      {
+        "date": "2024 - 26",
+        "title": "GEN AI DEVELOPER",
+        "description": "Contributed to IT system renewal by implementing 10 Gen AI business and employee use cases in production. Designed FastAPI APIs responsible for the micro-service orchestrating workflow of use cases following hexagonal architecture. Developed TypeScript/Vue front-end micro-fronts for the Gen AI platform. Managed versions with GitLab, performed debugging, wrote unit tests to ensure code quality and ran CI pipelines. Continuous monitoring of Gen AI developments and industry updates.",
+        "org": "CREDIT AGRICOLE (CAPFM)"
+      },
+      {
+        "date": "2024. 07",
+        "title": "AMAZON STOREFRONT MANAGER",
+        "description": "Managed listings via Seller Central with autonomous optimization based on product files and sales data.",
+        "org": "BI Paris"
+      },
+      {
+        "date": "2024. 03",
+        "title": "WEBMASTER",
+        "description": "Created Beemada.online website (WordPress, HTML/CSS), managed integration and deployment.",
+        "org": "EXCELSIOR BEEMADA"
+      }
+    ]
+  },
+  "skills": {
+    "titles": {
+      "programming": "PROGRAMMING & DATA SCIENCE",
+      "database": "DATABASES & DATA MANAGEMENT",
+      "web": "WEB DEVELOPMENT & SYSTEMS",
+      "media": "MEDIA & DESIGN"
+    },
+    "programming": [
+      "C",
+      "C++",
+      "Python",
+      "Java",
+      "R",
+      "TensorFlow",
+      "PyTorch",
+      "RDF",
+      "SPARQL"
+    ],
+    "database": [
+      "SQL",
+      "PL/SQL",
+      "MariaDB",
+      "MySQL",
+      "Neo4j",
+      "SAS",
+      "AWS",
+      "Git",
+      "Bash"
+    ],
+    "web": [
+      "Vue.js",
+      "Nest",
+      "Typescript",
+      "Tailwind",
+      "Lambda",
+      "RAG",
+      "Vectorization"
+    ],
+    "media": [
+      "Premiere Pro",
+      "Lightroom",
+      "Photoshop",
+      "Figma",
+      "Canva",
+      "WordPress"
+    ]
+  },
+  "app": {
+    "darkMode": "dark-mode",
+    "loading": "Loading.",
+    "videoNotSupported": "Your browser does not support the video tag.",
+    "brand": "YohannStudio.",
+    "loadingStatus": "Loading status",
+    "light": "Light",
+    "dark": "Dark",
+    "toggleDarkMode": "Toggle dark mode",
+    "toggleLanguage": "Toggle language",
+    "contactEmail": "Contact via email",
+    "underConstruction": "🚧 Under Construction — This site is actively being developed."
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for does not exist.",
+    "backToStudio": "BACK TO STUDIO"
+  }
+}
