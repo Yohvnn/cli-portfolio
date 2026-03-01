@@ -9,6 +9,7 @@ import { Gallery } from "./components/Gallery";
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { useTypingEffect } from "./hooks/useTypingEffect";
+import { useReturningVisitor } from "./hooks/useReturningVisitor";
 import {
   MAX_CONTENT_WIDTH,
   MOTION,
@@ -22,8 +23,9 @@ import galleryPhotos from "../../public/gallery/index.json";
 /** Main single-page portfolio application. */
 export default function App() {
   const { t } = useTranslation();
+  const isReturning = useReturningVisitor();
 
-  const profileName = t("profile.name");
+  const profileName = t(isReturning ? "profile.nameReturning" : "profile.name");
   const profileTitle = t("profile.title");
   const aboutText = t("home.aboutText");
   const subtitleText = `${profileTitle}`;
