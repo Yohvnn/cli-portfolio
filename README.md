@@ -2,6 +2,9 @@
 
 A single-page portfolio built with React, Vite, and Tailwind CSS v4. Features a Neo-Brutalist / terminal CLI aesthetic — monospaced type, strict monochrome palette, 1 px structural lines, dark/light mode, bilingual support (EN/FR), typing animations, a photo gallery with fullscreen modal, and project previews inside terminal-chrome frames.
 
+![cli-portfolio preview](docs/website-preview.png)
+
+
 ## Tech Stack
 
 - **React 18** — UI library
