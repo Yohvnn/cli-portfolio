@@ -42,7 +42,7 @@ describe('CliToolbar', () => {
 
     it('shows DARK label when isDark is true', () => {
         render(<CliToolbar />);
-        expect(screen.getByText('DARK')).toBeInTheDocument();
+        expect(screen.getByText('nav.darkButton')).toBeInTheDocument();
     });
 
     it('shows EN label when lang is en', () => {
