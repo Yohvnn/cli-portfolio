@@ -9,7 +9,7 @@ import { Gallery } from "./components/Gallery";
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { useTypingEffect } from "./hooks/useTypingEffect";
-import { useGreeting } from "./hooks/useGreeting";
+import { useReturningVisitor } from "./hooks/useReturningVisitor";
 import {
   MAX_CONTENT_WIDTH,
   MOTION,
@@ -23,8 +23,9 @@ import galleryPhotos from "../../public/gallery/index.json";
 /** Main single-page portfolio application. */
 export default function App() {
   const { t } = useTranslation();
-  const greetingKey = useGreeting();
-  const profileName = t(greetingKey);
+  const isReturning = useReturningVisitor();
+
+  const profileName = t(isReturning ? "profile.nameReturning" : "profile.name");
   const profileTitle = t("profile.title");
   const aboutText = t("home.aboutText");
   const subtitleText = `${profileTitle}`;
@@ -48,12 +49,14 @@ export default function App() {
     database: t("skills.database", { returnObjects: true }) as string[],
     web: t("skills.web", { returnObjects: true }) as string[],
     media: t("skills.media", { returnObjects: true }) as string[],
+    cloudProvider: t("skills.cloudProvider", { returnObjects: true }) as string[],
   };
   const skillTitles = {
     programming: t("skills.titles.programming"),
     database: t("skills.titles.database"),
     web: t("skills.titles.web"),
     media: t("skills.titles.media"),
+    cloudProvider: t("skills.titles.cloudProvider")
   };
   const photos = galleryPhotos;
 
@@ -87,7 +90,7 @@ export default function App() {
       github: t("toolbox.hawkMobile.github"),
       preview: {
         images: [
-          { src: "/projects/hawk-mobile-app.png", alt: "HAWK Mobile Chat Interface" },
+          { src: "/projects/hawk-mobile-app.png", alt: "HAWK Mobile Chat" },
           { src: "/projects/hawk-mobile-settings.png", alt: "HAWK Mobile Settings" },
         ],
         stack: ["React Native", "Expo", "Gemini"],
@@ -178,7 +181,7 @@ export default function App() {
 
               <Divider />
 
-              <div className="text-xs sm:text-sm leading-relaxed uppercase tracking-wide whitespace-pre-line opacity-80 max-w-xl min-h-[6em]">
+              <div className={TEXT.profileSummary}>
                 {typedAbout}{typedAbout === aboutText && <TypingCursor />}
               </div>
 
@@ -335,7 +338,7 @@ export default function App() {
                   <h2 className={TEXT.sectionHeader}>
                     {"// "}{t("profile.locationTitle").split(",")[1]?.trim() || "LOCATION"}
                   </h2>
-                  <div className="text-xs sm:text-sm space-y-1 opacity-60 leading-relaxed uppercase">
+                  <div className={TEXT.locationInfo}>
                     <p>{t("profile.location")}</p>
                   </div>
                 </div>

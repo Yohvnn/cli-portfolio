@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { useTranslation } from "react-i18next";
 
 interface Photo {
     url: string;
@@ -21,6 +22,7 @@ interface GalleryProps {
  * and fullscreen modal viewing.
  */
 export function Gallery({ photos, title, subtitle }: GalleryProps) {
+    const { t } = useTranslation();
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
     const selectedPhoto = selectedIndex !== null ? photos[selectedIndex] : null;
 
@@ -68,7 +70,7 @@ export function Gallery({ photos, title, subtitle }: GalleryProps) {
                                     loading="lazy"
                                 />
 
-                                <div className="absolute top-3 left-3 text-[10px] uppercase tracking-widest border border-accent/40 text-accent/60 px-2 py-0.5 bg-background/50 backdrop-blur-sm group-hover:border-accent group-hover:text-accent transition-all">
+                                <div className="absolute top-3 left-3 text-[10px] uppercase tracking-widest border dark:border-accent/60 dark:text-accent/80 px-2 py-0.5 bg-background/90 dark:bg-background/50 backdrop-blur-sm group-hover:border-accent group-hover:text-accent transition-all">
                                     {String(idx + 1).padStart(2, "0")} / {String(photos.length).padStart(2, "0")}
                                 </div>
                             </div>
@@ -82,7 +84,7 @@ export function Gallery({ photos, title, subtitle }: GalleryProps) {
                                         {photo.location}
                                     </p>
                                 </div>
-                                <p className="text-[9px] opacity-30 uppercase tracking-wider">
+                                <p className="text-[9px] opacity-50 uppercase tracking-wider">
                                     {formatDate(photo.date)}
                                 </p>
                             </div>
@@ -114,7 +116,7 @@ export function Gallery({ photos, title, subtitle }: GalleryProps) {
                                     <span className="w-2 h-2 border border-foreground/20 shrink-0" />
                                 </div>
 
-                                <span className="text-[10px] uppercase tracking-[0.2em] opacity-30 mx-4 flex-1 text-center">
+                                <span className="text-[10px] uppercase tracking-[0.2em] opacity-50 mx-4 flex-1 text-center">
                                     {selectedPhoto.title}
                                     <span className="opacity-60 ml-2">
                                         {String(selectedIndex + 1).padStart(2, "0")} / {String(photos.length).padStart(2, "0")}
@@ -122,7 +124,7 @@ export function Gallery({ photos, title, subtitle }: GalleryProps) {
                                 </span>
 
                                 <div className="flex items-center gap-2 shrink-0">
-                                    <span className="text-[10px] uppercase tracking-widest opacity-30 hidden sm:inline">
+                                    <span className="text-[10px] uppercase tracking-widest opacity-50 hidden sm:inline">
                                         [ ESC ]
                                     </span>
                                     <button
@@ -130,7 +132,7 @@ export function Gallery({ photos, title, subtitle }: GalleryProps) {
                                         className="text-[11px] uppercase tracking-widest opacity-60 hover:opacity-100 hover:text-accent transition-all shrink-0"
                                         aria-label="Close"
                                     >
-                                        [ CLOSE ]
+                                        [ {t("nav.closeButton")} ]
                                     </button>
                                 </div>
                             </div>

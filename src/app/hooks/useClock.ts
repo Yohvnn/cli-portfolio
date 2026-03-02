@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
 
 function formatTime(date: Date): string {
-  return date.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+    return date.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
 }
 
-/** Returns a live HH:MM clock string updated every second. */
-export function useClock(): string {
-  const [time, setTime] = useState(() => formatTime(new Date()));
+/** Returns a live HH:MM clock string and a tick boolean (alternates every second) for colon animation. */
+export function useClock(): { time: string; tick: boolean } {
+    const [state, setState] = useState(() => {
+        const now = new Date();
+        return { time: formatTime(now), tick: now.getSeconds() % 2 === 0 };
+    });
 
-  useEffect(() => {
-    const id = setInterval(() => setTime(formatTime(new Date())), 1000);
-    return () => clearInterval(id);
-  }, []);
+    useEffect(() => {
+        const id = setInterval(() => {
+            const now = new Date();
+            setState({ time: formatTime(now), tick: now.getSeconds() % 2 === 0 });
+        }, 1000);
+        return () => clearInterval(id);
+    }, []);
 
-  return time;
+    return state;
 }

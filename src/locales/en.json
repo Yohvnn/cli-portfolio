@@ -8,7 +8,13 @@
     "contact": "Contact",
     "goHome": "Go to Home",
     "toggleNavigation": "Toggle navigation",
-    "timerTooltip": "'Be patient, you will see timer tools here soon.'"
+    "timerTooltip": "'Be patient, you will see timer tools here soon.'",
+    "closeButton": "Close",
+    "previousButton": "PREV",
+    "nextButton": "NEXT",
+    "topButton": "TOP",
+    "darkButton": "DARK",
+    "lightButton": "LIGHT"
   },
   "profile": {
     "name": "Hi, I'm YOHANN!",
@@ -108,7 +114,7 @@
   },
   "gallery": {
     "title": "GALLERY",
-    "subtitle": "A curated selection of my photography. High-res images served via CDN. If you wish to use any photo, please contact me first.",
+    "subtitle": "A curated selection of my photography. If you wish to use any photo, please contact me first.",
     "back": "← Back to Resume",
     "loading": "Loading photos…",
     "photoDetails": "Photo details",
@@ -221,7 +227,8 @@
       "programming": "PROGRAMMING & DATA SCIENCE",
       "database": "DATABASES & DATA MANAGEMENT",
       "web": "WEB DEVELOPMENT & SYSTEMS",
-      "media": "MEDIA & DESIGN"
+      "media": "MEDIA & DESIGN",
+      "cloudProvider": "CLOUD PROVIDERS"
     },
     "programming": [
       "C",
@@ -238,10 +245,11 @@
       "SQL",
       "PL/SQL",
       "MariaDB",
+      "MongoDB",
+      "DynamoDB",
       "MySQL",
       "Neo4j",
       "SAS",
-      "AWS",
       "Git",
       "Bash"
     ],
@@ -250,6 +258,8 @@
       "Nest",
       "Typescript",
       "Tailwind",
+      "RESTAPI",
+      "FASTAPI",
       "Lambda",
       "RAG",
       "Vectorization"
@@ -260,7 +270,12 @@
       "Photoshop",
       "Figma",
       "Canva",
-      "WordPress"
+      "WordPress",
+      "Framer"
+    ],
+    "cloudProvider": [
+      "AWS",
+      "AZURE"
     ]
   },
   "app": {

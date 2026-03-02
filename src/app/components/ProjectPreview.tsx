@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { useTranslation } from "react-i18next";
 
 interface ProjectImage {
     src: string;
@@ -28,6 +29,8 @@ export function ProjectPreview({
     chromeLabel,
     badgeLabel = "[ PREVIEW ]",
 }: ProjectPreviewProps) {
+    const { t } = useTranslation();
+
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -55,7 +58,7 @@ export function ProjectPreview({
                         <span className="w-2 h-2 border border-foreground/20 shrink-0 inline-block" />
                     </div>
 
-                    <span className="text-[10px] uppercase tracking-[0.2em] opacity-30 truncate mx-4 flex items-center gap-2">
+                    <span className="text-[10px] uppercase tracking-[0.2em] opacity-50 truncate mx-4 flex items-center gap-2">
                         {chromeLabel}
                         {imageList.length > 1 && (
                             <span className="opacity-60 text-[9px]">
@@ -138,7 +141,7 @@ export function ProjectPreview({
                             </span>
                         ))}
                         <span className="text-[10px] opacity-20 mx-0.5 hidden sm:inline">│</span>
-                        <span className="text-[10px] uppercase tracking-widest opacity-25 hidden sm:inline">
+                        <span className="text-[10px] uppercase tracking-widest opacity-50 hidden sm:inline">
                             {year}
                         </span>
                     </div>
@@ -176,11 +179,11 @@ export function ProjectPreview({
                                     <span className="w-2 h-2 border border-foreground/20 shrink-0" />
                                     <span className="w-2 h-2 border border-foreground/20 shrink-0" />
                                 </div>
-                                <span className="text-[10px] uppercase tracking-[0.2em] opacity-30 flex-1 text-center mx-4">
+                                <span className="text-[10px] uppercase tracking-[0.2em] opacity-50 flex-1 text-center mx-4">
                                     {currentImage.alt}
                                 </span>
                                 <div className="flex items-center gap-2 shrink-0">
-                                    <span className="text-[10px] uppercase tracking-widest opacity-30 hidden sm:inline">
+                                    <span className="text-[10px] uppercase tracking-widest opacity-50 hidden sm:inline">
                                         [ ESC ]
                                     </span>
                                     <button
@@ -188,7 +191,7 @@ export function ProjectPreview({
                                         className="text-[11px] uppercase tracking-widest opacity-60 hover:opacity-100 hover:text-accent transition-all"
                                         aria-label="Close modal"
                                     >
-                                        [ CLOSE ]
+                                        [ {t("nav.closeButton")} ]
                                     </button>
                                 </div>
                             </div>
@@ -208,7 +211,7 @@ export function ProjectPreview({
                                         className="text-[11px] opacity-60 hover:opacity-100 hover:text-accent transition-all uppercase tracking-widest"
                                         aria-label="Previous image"
                                     >
-                                        [ ← PREV ]
+                                        [ ← {t("nav.previousButton")} ]
                                     </button>
                                     <span className="text-[10px] opacity-60 uppercase tracking-wider">
                                         {currentImageIndex + 1} / {imageList.length}
@@ -218,7 +221,7 @@ export function ProjectPreview({
                                         className="text-[11px] opacity-60 hover:opacity-100 hover:text-accent transition-all uppercase tracking-widest"
                                         aria-label="Next image"
                                     >
-                                        [ NEXT → ]
+                                        [ {t("nav.nextButton")} → ]
                                     </button>
                                 </div>
                             )}

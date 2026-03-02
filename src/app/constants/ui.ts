@@ -54,12 +54,14 @@ export const MAX_CONTENT_WIDTH = "max-w-4xl mx-auto w-full";
 export const TEXT = {
     sectionHeader: "text-sm md:text-sm uppercase tracking-[0.25em] text-accent mb-8",
     metaLabel: "text-[11px] md:text-sm opacity-70 tracking-wider font-light",
+    profileSummary:"text-xs sm:text-sm leading-relaxed uppercase tracking-wide whitespace-pre-line opacity-80 max-w-xl min-h-[6em]",
     rowTitle: "text-[11px] sm:text-sm md:text-sm uppercase tracking-wide group-hover:text-accent group-hover:translate-x-1 transition-all duration-300",
     rowSub: "text-[11px] sm:text-sm opacity-70 font-light",
     chip: "text-[11px] sm:text-sm uppercase tracking-wider opacity-70 hover:opacity-100 hover:text-accent hover:translate-x-0.5 transition-all duration-200 cursor-default",
     mutedParagraph: "text-sm sm:text-sm opacity-70 leading-relaxed max-w-lg uppercase tracking-wider",
     footer: "text-sm sm:text-sm opacity-60 tracking-widest uppercase",
     contactLink: "group/link block text-sm sm:text-sm opacity-70 hover:opacity-100 hover:text-accent hover:translate-x-1 transition-all duration-300 uppercase tracking-wider",
+    locationInfo: "text-sm sm:text-sm space-y-1 opacity-60 leading-relaxed uppercase"
 } as const;
 
 export const ROW_CLASS =

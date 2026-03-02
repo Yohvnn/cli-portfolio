@@ -13,6 +13,10 @@ vi.mock('../hooks/useLanguage', () => ({
     useLanguage: () => ({ lang: 'en', toggle: mockToggleLang }),
 }));
 
+vi.mock('../hooks/useClock', () => ({
+    useClock: () => ({ time: '14:30', tick: true }),
+}));
+
 vi.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key: string, fallback?: string) => fallback ?? key,

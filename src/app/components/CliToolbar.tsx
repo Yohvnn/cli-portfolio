@@ -13,6 +13,7 @@ export function CliToolbar() {
     const { lang, toggle: toggleLang } = useLanguage();
     const [showTop, setShowTop] = useState(false);
     const time = useClock();
+    const [hours, minutes] = time.time.split(':');
 
     useEffect(() => {
         const onScroll = () => setShowTop(window.scrollY > 300);
@@ -34,10 +35,11 @@ export function CliToolbar() {
                         ~/ycch $
                     </span>
                     <span className="text-[10px] sm:text-xs opacity-40 select-none tabular-nums">
-                        {time}
+                        {hours}
+                        <span className={`transition-opacity duration-100 ${time.tick ? 'opacity-100' : 'opacity-0'}`}>:</span>
+                        {minutes}
                     </span>
                 </div>
-
                 <div className="flex items-center gap-4 sm:gap-6">
                     {/* scroll to top */}
                     <button
@@ -49,7 +51,7 @@ export function CliToolbar() {
                             }`}
                     >
                         <span className="text-accent">[</span>
-                        <span>↑ TOP</span>
+                        <span>↑ {t("nav.topButton")} </span>
                         <span className="text-accent">]</span>
                     </button>
                     <button
@@ -58,7 +60,7 @@ export function CliToolbar() {
                         className="group flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-widest opacity-70 hover:opacity-100 hover:text-accent transition-all duration-200 cursor-pointer"
                     >
                         <span className="text-accent">[</span>
-                        <span>{isDark ? "DARK" : "LIGHT"}</span>
+                        <span>{(isDark ? t("nav.darkButton") : t("nav.lightButton"))}</span>
                         <span className="text-accent">]</span>
                     </button>
 

@@ -8,7 +8,13 @@
     "contact": "Contact",
     "goHome": "Aller à l'accueil",
     "toggleNavigation": "Basculer la navigation",
-    "timerTooltip": "'Patience, tu verras bientôt des outils de minuterie ici.'"
+    "timerTooltip": "'Patience, tu verras bientôt des outils de minuterie ici.'",
+    "closeButton": "Fermer",
+    "previousButton": "PREC",
+    "nextButton": "SUIV",
+    "topButton": "HAUT",
+    "darkButton": "NUIT",
+    "lightButton": "JOUR"
   },
   "profile": {
     "name": "Coucou, moi c'est YOHANN!",
@@ -108,7 +114,7 @@
   },
   "gallery": {
     "title": "GALERIE",
-    "subtitle": "Une sélection de mes photos en haute résolution. Pour toute utilisation, contacte‑moi au préalable.",
+    "subtitle": "Une sélection de mes photos. Pour toute utilisation, contacte‑moi au préalable.",
     "back": "← Retour au CV",
     "loading": "Chargement des photos…",
     "photoDetails": "Détails de la photo",
@@ -221,7 +227,8 @@
       "programming": "PROGRAMMATION & DATA SCIENCE",
       "database": "BASES DE DONNÉES & GESTION DES DONNÉES",
       "web": "DÉVELOPPEMENT WEB & SYSTÈMES",
-      "media": "MÉDIA & DESIGN"
+      "media": "MÉDIA & DESIGN",
+      "cloudProvider": "SERVICES CLOUD"
     },
     "programming": [
       "C",
@@ -238,18 +245,21 @@
       "SQL",
       "PL/SQL",
       "MariaDB",
+      "MongoDB",
+      "DynamoDB",
       "MySQL",
       "Neo4j",
       "SAS",
-      "AWS",
       "Git",
       "Bash"
     ],
     "web": [
       "Vue.js",
       "Nest",
-      "TypeScript",
+      "Typescript",
       "Tailwind",
+      "RESTAPI",
+      "FASTAPI",
       "Lambda",
       "RAG",
       "Vectorisation"
@@ -260,7 +270,12 @@
       "Photoshop",
       "Figma",
       "Canva",
-      "WordPress"
+      "WordPress",
+      "Framer"
+    ],
+    "cloudProvider": [
+      "AWS",
+      "AZURE"
     ]
   },
   "app": {
