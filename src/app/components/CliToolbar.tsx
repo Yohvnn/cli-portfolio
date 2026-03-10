@@ -34,11 +34,13 @@ export function CliToolbar() {
                     <span className="text-accent text-[10px] sm:text-xs tracking-widest select-none">
                         ~/ycch $
                     </span>
-                    <span className="text-[10px] sm:text-xs opacity-40 select-none tabular-nums">
-                        {hours}
-                        <span className={`transition-opacity duration-100 ${time.tick ? 'opacity-100' : 'opacity-0'}`}>:</span>
-                        {minutes}
-                    </span>
+                    <div className="flex items-center">
+                        <span className="text-[10px] sm:text-xs opacity-40 select-none tabular-nums">{hours}</span>
+                        <span className={`text-[10px] sm:text-xs opacity-40 select-none ${time.tick ? 'visible' : 'invisible'}`}>:</span>
+                        <span className="text-[10px] sm:text-xs opacity-40 select-none tabular-nums">{minutes}</span>
+                    </div>
+
+
                 </div>
                 <div className="flex items-center gap-4 sm:gap-6">
                     {/* scroll to top */}
