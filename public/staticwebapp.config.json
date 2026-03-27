@@ -3,7 +3,7 @@
         {
             "route": "/leafy*",
             "redirect": "https://leafy.yohanncch.studio",
-            "statusCode": 308
+            "statusCode": 302
         }
     ],
     "navigationFallback": {
