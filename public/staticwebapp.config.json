@@ -1,7 +1,15 @@
 {
+    "routes": [
+        {
+            "route": "/leafy*",
+            "redirect": "https://leafy.yohanncch.studio",
+            "statusCode": 308
+        }
+    ],
     "navigationFallback": {
         "rewrite": "/index.html",
         "exclude": [
+            "/leafy*",
             "/assets/*",
             "/gallery/*",
             "/projects/*",
