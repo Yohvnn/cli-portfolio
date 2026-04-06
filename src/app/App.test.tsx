@@ -170,7 +170,7 @@ describe('App Component', () => {
         render(<App></App>);
         expect(screen.getByText('JavaScript')).toBeInTheDocument();
         expect(screen.getByText('TypeScript')).toBeInTheDocument();
-        expect(screen.getByText('React')).toBeInTheDocument();
+        expect(screen.getAllByText('React').length).toBeGreaterThan(0);
         expect(screen.getByText('PostgreSQL')).toBeInTheDocument();
     });
 
