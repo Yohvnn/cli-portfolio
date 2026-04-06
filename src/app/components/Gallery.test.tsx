@@ -45,4 +45,24 @@ describe('Gallery Component', () => {
         fireEvent.click(screen.getByLabelText('Close'));
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
+
+    it('navigates to next and previous photo inside dialog', () => {
+        render(<Gallery photos={mockPhotos} title="Gallery" />);
+
+        fireEvent.click(screen.getByLabelText('View Test Photo 1'));
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(screen.getAllByText('Test Photo 1').length).toBeGreaterThan(0);
+
+        fireEvent.click(screen.getByLabelText('Next photo'));
+        expect(screen.getAllByText('Test Photo 2').length).toBeGreaterThan(0);
+
+        fireEvent.click(screen.getByLabelText('Previous photo'));
+        expect(screen.getAllByText('Test Photo 1').length).toBeGreaterThan(0);
+    });
+
+    it('renders without subtitle when not provided', () => {
+        render(<Gallery photos={mockPhotos} title="Gallery" />);
+
+        expect(screen.queryByText('A collection')).not.toBeInTheDocument();
+    });
 });
