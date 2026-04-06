@@ -159,7 +159,10 @@ export function Gallery({ photos, title, subtitle }: GalleryProps) {
                                     <div className="flex items-center gap-2 shrink-0">
                                         <button
                                             onClick={() =>
-                                                setSelectedIndex((i) => (i! - 1 + photos.length) % photos.length)
+                                                setSelectedIndex((i) => {
+                                                    if (i === null) return i;
+                                                    return (i - 1 + photos.length) % photos.length;
+                                                })
                                             }
                                             className="text-[11px] opacity-60 hover:opacity-100 hover:text-accent transition-all uppercase tracking-widest"
                                             aria-label="Previous photo"
@@ -168,7 +171,10 @@ export function Gallery({ photos, title, subtitle }: GalleryProps) {
                                         </button>
                                         <button
                                             onClick={() =>
-                                                setSelectedIndex((i) => (i! + 1) % photos.length)
+                                                setSelectedIndex((i) => {
+                                                    if (i === null) return i;
+                                                    return (i + 1) % photos.length;
+                                                })
                                             }
                                             className="text-[11px] opacity-60 hover:opacity-100 hover:text-accent transition-all uppercase tracking-widest"
                                             aria-label="Next photo"
