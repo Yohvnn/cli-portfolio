@@ -52,6 +52,7 @@
   "toolbox": {
     "title": "TOOLS COLLECTION",
     "subtitle": "A curated set of small, purposeful tools",
+    "openApp": "OPEN APP",
     "backToResume": "← Back to Resume",
     "hawkMcp": {
       "title": "HAWK MCP",
@@ -71,6 +72,17 @@
       "desc": "A collection of Android Home Screen widgets inspired by the Pixel aesthetic, built using Jetpack Glance.",
       "github": "https://github.com/Yohvnn/ystudio-widgets",
       "figcaption": "Pixel-inspired home screen widgets"
+    },
+    "iteria": {
+      "title": "ITERIA",
+      "desc": "AI expedition planner for hiking and cycling routes, combining GPX analysis, weather context, and AI-generated preparation guidance.",
+      "github": "https://github.com/Yohvnn/iteria",
+      "figcaption": "Route planning workspace with AI-generated expedition guidance"
+    },
+    "leafy": {
+      "title": "LEAFY",
+      "desc": "Care for your plants without losing your day. Leafy keeps routines light, focused, and consistent with smart watering reminders, a care journal, and a calm dashboard.",
+      "figcaption": "Plant care dashboard with smart reminders and routine tracking"
     },
     "pdf": {
       "title": "PDF TOOLS",

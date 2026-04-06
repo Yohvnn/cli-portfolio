@@ -11,6 +11,7 @@ interface ProjectImage {
 interface ProjectPreviewProps {
     images: ProjectImage | ProjectImage[];
     githubUrl?: string;
+    liveUrl?: string;
     stack: string[];
     year: string;
     chromeLabel: string;
@@ -24,11 +25,12 @@ interface ProjectPreviewProps {
 export function ProjectPreview({
     images,
     githubUrl,
+    liveUrl,
     stack,
     year,
     chromeLabel,
     badgeLabel = "[ PREVIEW ]",
-}: ProjectPreviewProps) {
+}: Readonly<ProjectPreviewProps>) {
     const { t } = useTranslation();
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -108,7 +110,7 @@ export function ProjectPreview({
                             <div className="flex gap-1">
                                 {imageList.map((_, idx) => (
                                     <button
-                                        key={idx}
+                                        key={imageList[idx].src}
                                         onClick={() => setCurrentImageIndex(idx)}
                                         className={`w-1.5 h-1.5 border transition-all ${idx === currentImageIndex
                                             ? "bg-accent border-accent"
@@ -150,6 +152,17 @@ export function ProjectPreview({
                         <span className="text-[10px] uppercase tracking-widest border border-accent/50 text-accent/80 px-2 py-0.5 shrink-0">
                             {badgeLabel}
                         </span>
+                        {liveUrl && (
+                            <a
+                                href={liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`${chromeLabel} live project`}
+                                className="text-[11px] uppercase tracking-widest opacity-60 hover:opacity-100 hover:text-accent transition-all duration-300"
+                            >
+                                [ {t("toolbox.openApp")} ]
+                            </a>
+                        )}
                         {githubUrl && (
                             <a
                                 href={githubUrl}

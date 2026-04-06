@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDarkMode } from "../hooks/useDarkMode";
 import { useLanguage } from "../hooks/useLanguage";
@@ -12,6 +12,9 @@ export function CliToolbar() {
     const { isDark, toggle: toggleTheme } = useDarkMode();
     const { lang, toggle: toggleLang } = useLanguage();
     const [showTop, setShowTop] = useState(false);
+    const [terminalCommand, setTerminalCommand] = useState("");
+    const [isTerminalActive, setIsTerminalActive] = useState(false);
+    const terminalInputRef = useRef<HTMLInputElement>(null);
     const time = useClock();
     const [hours, minutes] = time.time.split(':');
 
@@ -21,7 +24,20 @@ export function CliToolbar() {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    useEffect(() => {
+        if (isTerminalActive) {
+            terminalInputRef.current?.focus();
+        }
+    }, [isTerminalActive]);
+
     const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+    const handleTerminalCommand = () => {
+        const normalized = terminalCommand.trim().replaceAll(/\s+/g, " ").toLowerCase();
+        if (normalized === "cd iteria") {
+            globalThis.open("https://iteria.yohanncch.studio/", "_self");
+        }
+    };
 
     return (
         <nav
@@ -31,13 +47,58 @@ export function CliToolbar() {
             <div className="max-w-4xl mx-auto flex items-center justify-between px-6 py-3">
                 {/* prompt + live clock */}
                 <div className="flex items-center gap-3">
-                    <span className="text-accent text-[10px] sm:text-xs tracking-widest select-none">
-                        ~/ycch $
-                    </span>
-                    <div className="flex items-center">
-                        <span className="text-[10px] sm:text-xs opacity-40 select-none tabular-nums">{hours}</span>
-                        <span className={`text-[10px] sm:text-xs opacity-40 select-none ${time.tick ? 'visible' : 'invisible'}`}>:</span>
-                        <span className="text-[10px] sm:text-xs opacity-40 select-none tabular-nums">{minutes}</span>
+                    <div className="flex items-center gap-2 min-w-[12rem] sm:min-w-[16rem]">
+                        <button
+                            type="button"
+                            onClick={() => setIsTerminalActive(true)}
+                            className="text-accent text-[10px] sm:text-xs tracking-widest select-none"
+                        >
+                            ~/ycch $
+                        </button>
+
+                        {isTerminalActive ? (
+                            <div className="flex items-center min-w-[6rem] sm:min-w-[9rem]">
+                                <input
+                                    id="portfolio-cli-command"
+                                    ref={terminalInputRef}
+                                    aria-label="Portfolio CLI command"
+                                    value={terminalCommand}
+                                    onChange={(event) => setTerminalCommand(event.target.value)}
+                                    onBlur={() => {
+                                        if (!terminalCommand.trim()) {
+                                            setIsTerminalActive(false);
+                                        }
+                                    }}
+                                    onKeyDown={(event) => {
+                                        if (event.key === "Enter") {
+                                            event.preventDefault();
+                                            handleTerminalCommand();
+                                        }
+                                        if (event.key === "Escape") {
+                                            setTerminalCommand("");
+                                            setIsTerminalActive(false);
+                                            terminalInputRef.current?.blur();
+                                        }
+                                    }}
+                                    className="w-full bg-transparent border-none outline-none text-[10px] sm:text-xs tracking-[0.14em] text-foreground"
+                                    spellCheck={false}
+                                    autoComplete="off"
+                                    autoCapitalize="off"
+                                    autoCorrect="off"
+                                />
+                            </div>
+                        ) : (
+                            <button
+                                type="button"
+                                aria-label="Activate command line"
+                                onClick={() => setIsTerminalActive(true)}
+                                className="flex items-center"
+                            >
+                                <span className="text-[10px] sm:text-xs opacity-40 select-none tabular-nums">{hours}</span>
+                                <span className={`text-[10px] sm:text-xs opacity-40 select-none ${time.tick ? 'visible' : 'invisible'}`}>:</span>
+                                <span className="text-[10px] sm:text-xs opacity-40 select-none tabular-nums">{minutes}</span>
+                            </button>
+                        )}
                     </div>
 
 

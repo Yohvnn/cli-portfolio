@@ -52,6 +52,7 @@
   "toolbox": {
     "title": "COLLECTION D'OUTILS",
     "subtitle": "Une collection d'utilitaires et d'applications soigneusement réalisées",
+    "openApp": "OUVRIR APP",
     "backToResume": "← Retour au CV",
     "hawkMcp": {
       "title": "HAWK MCP",
@@ -71,6 +72,17 @@
       "desc": "Une collection de widgets pour écran d'accueil Android inspirés de l'esthétique Pixel, construits avec Jetpack Glance.",
       "github": "https://github.com/Yohvnn/ystudio-widgets",
       "figcaption": "Widgets d'écran d'accueil style Pixel"
+    },
+    "iteria": {
+      "title": "ITERIA",
+      "desc": "Planificateur d'expédition IA pour les itinéraires randonnée et vélo, combinant analyse GPX, contexte météo et recommandations de préparation générées par IA.",
+      "github": "https://github.com/Yohvnn/iteria",
+      "figcaption": "Espace de planification d'itinéraire avec recommandations d'expédition générées par IA"
+    },
+    "leafy": {
+      "title": "LEAFY",
+      "desc": "Prenez soin de vos plantes sans alourdir vos journées. Leafy garde votre routine simple et régulière avec rappels d'arrosage intelligents, journal de soin et tableau de bord apaisé.",
+      "figcaption": "Tableau de bord de soin des plantes avec rappels intelligents"
     },
     "pdf": {
       "title": "OUTILS PDF",

@@ -63,6 +63,7 @@ export default function App() {
   type Tool = {
     key: string;
     github?: string;
+    live?: string;
     comingSoon?: boolean;
     preview?: {
       images: Array<{ src: string; alt: string }>;
@@ -108,6 +109,29 @@ export default function App() {
         year: "2025",
         chromeLabel: "PIXEL-WIDGETS.SRC",
         badgeLabel: "[ READY ]",
+      },
+    },
+    {
+      key: "iteria",
+      github: t("toolbox.iteria.github"),
+      live: "https://iteria.yohanncch.studio/",
+      preview: {
+        images: [{ src: "/projects/iteria.png", alt: "Iteria AI Expedition Planner" }],
+        stack: ["FastAPI", "React", "MongoDB", "Gemini"],
+        year: "2026",
+        chromeLabel: "ITERIA.SRC",
+        badgeLabel: "[ LIVE ]",
+      },
+    },
+    {
+      key: "leafy",
+      live: "https://leafy.yohanncch.studio",
+      preview: {
+        images: [{ src: "/projects/leafy.png", alt: "Leafy Plant Care App" }],
+        stack: ["React", "PWA", "Reminders", "Plant Care"],
+        year: "2026",
+        chromeLabel: "LEAFY.APP",
+        badgeLabel: "[ LIVE ]",
       },
     },
     { key: "pdf", comingSoon: true },
@@ -195,7 +219,7 @@ export default function App() {
             <SectionHeader>{t("home.educationTitle")}</SectionHeader>
             <div className="space-y-1">
               {education.map((item, i) => (
-                <motion.div key={i} {...MOTION.listItem(i)} className={ROW_CLASS}>
+                <motion.div key={`${item.date}-${item.title}`} {...MOTION.listItem(i)} className={ROW_CLASS}>
                   <div className="grid grid-cols-12 gap-3 md:gap-6">
                     <div className="col-span-3 sm:col-span-2">
                       <span className={TEXT.metaLabel}>{item.date}</span>
@@ -217,7 +241,7 @@ export default function App() {
             <SectionHeader>{t("home.workTitle")}</SectionHeader>
             <div className="space-y-1">
               {work.map((item, i) => (
-                <motion.div key={i} {...MOTION.listItem(i)} className={ROW_CLASS}>
+                <motion.div key={`${item.date}-${item.title}`} {...MOTION.listItem(i)} className={ROW_CLASS}>
                   <div className="grid grid-cols-12 gap-3 md:gap-6">
                     <div className="col-span-3 sm:col-span-2">
                       <span className={TEXT.metaLabel}>{item.date}</span>
@@ -304,7 +328,7 @@ export default function App() {
                         href={tool.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`${t(`toolbox.${tool.key}.title`)} on GitHub`}
+                        aria-label={[t(`toolbox.${tool.key}.title`), 'on GitHub'].join(' ')}
                         className="text-[11px] uppercase tracking-widest opacity-60 hover:opacity-100 hover:text-accent transition-all duration-300 shrink-0"
                       >
                         [ GITHUB ]
@@ -316,6 +340,7 @@ export default function App() {
                     <ProjectPreview
                       images={tool.preview.images}
                       githubUrl={tool.github}
+                      liveUrl={tool.live}
                       stack={tool.preview.stack}
                       year={tool.preview.year}
                       chromeLabel={tool.preview.chromeLabel}

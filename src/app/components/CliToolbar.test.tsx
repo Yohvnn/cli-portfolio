@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 // Mock hooks before importing the component
@@ -26,8 +26,16 @@ vi.mock('react-i18next', () => ({
 import { CliToolbar } from './CliToolbar';
 
 describe('CliToolbar', () => {
+    let openMock: ReturnType<typeof vi.fn>;
+
     beforeEach(() => {
         vi.clearAllMocks();
+        openMock = vi.fn();
+        vi.stubGlobal('open', openMock);
+    });
+
+    afterEach(() => {
+        vi.unstubAllGlobals();
     });
 
     it('renders as a nav with CLI controls label', () => {
@@ -71,9 +79,31 @@ describe('CliToolbar', () => {
     it('reveals scroll-to-top after scroll > 300', () => {
         render(<CliToolbar />);
         // Simulate scroll
-        Object.defineProperty(window, 'scrollY', { value: 400, writable: true });
-        fireEvent.scroll(window);
+        Object.defineProperty(globalThis, 'scrollY', { value: 400, writable: true });
+        fireEvent.scroll(globalThis);
         const topButton = screen.getByTitle('Scroll to top');
         expect(topButton.className).not.toContain('opacity-0');
+    });
+
+    it('redirects to iteria when command is cd iteria and Enter is pressed', () => {
+        render(<CliToolbar />);
+        fireEvent.click(screen.getByLabelText('Activate command line'));
+        const input = screen.getByLabelText('Portfolio CLI command');
+
+        fireEvent.change(input, { target: { value: 'cd ITERIA' } });
+        fireEvent.keyDown(input, { key: 'Enter' });
+
+        expect(openMock).toHaveBeenCalledWith('https://iteria.yohanncch.studio/', '_self');
+    });
+
+    it('does not redirect for unknown commands', () => {
+        render(<CliToolbar />);
+        fireEvent.click(screen.getByLabelText('Activate command line'));
+        const input = screen.getByLabelText('Portfolio CLI command');
+
+        fireEvent.change(input, { target: { value: 'cd nothing' } });
+        fireEvent.keyDown(input, { key: 'Enter' });
+
+        expect(openMock).not.toHaveBeenCalled();
     });
 });
