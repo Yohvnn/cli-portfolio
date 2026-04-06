@@ -36,7 +36,7 @@ export function Gallery({ photos, title, subtitle }: GalleryProps) {
             <div className="space-y-6">
                 <div className="space-y-2">
                     <h2 className="text-xs md:text-sm uppercase tracking-[0.25em] text-accent mb-8">
-            // {title}
+                        {"// "}{title}
                     </h2>
                     {subtitle && (
                         <p className="text-xs sm:text-sm opacity-70 leading-relaxed max-w-lg uppercase tracking-wider">
