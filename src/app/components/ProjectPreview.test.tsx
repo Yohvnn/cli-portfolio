@@ -122,4 +122,70 @@ describe('ProjectPreview', () => {
         expect(screen.queryByLabelText('Next image')).not.toBeInTheDocument();
         expect(screen.queryByLabelText('Previous image')).not.toBeInTheDocument();
     });
+
+    // --- Modal navigation tests ---
+
+    it('navigates images within modal using next button', () => {
+        render(<ProjectPreview {...baseProps} images={multiImages} />);
+
+        // Move to second image first
+        fireEvent.click(screen.getByLabelText('View image 2'));
+        fireEvent.click(screen.getByLabelText('View Screenshot 2 in fullscreen'));
+
+        // Get all next buttons and click modal one
+        const nextButtons = screen.getAllByLabelText('Next image');
+        fireEvent.click(nextButtons[nextButtons.length - 1]); // Modal next button
+
+        // Verify modal still open and shows next image
+        expect(screen.getByLabelText('Image preview modal')).toBeInTheDocument();
+    });
+
+    it('navigates images within modal using previous button', () => {
+        render(<ProjectPreview {...baseProps} images={multiImages} />);
+
+        // Start at second image
+        fireEvent.click(screen.getByLabelText('View image 2'));
+        fireEvent.click(screen.getByLabelText('View Screenshot 2 in fullscreen'));
+
+        // Get all previous buttons and click modal one
+        const prevButtons = screen.getAllByLabelText('Previous image');
+        fireEvent.click(prevButtons[prevButtons.length - 1]); // Modal previous button
+
+        // Verify modal still open
+        expect(screen.getByLabelText('Image preview modal')).toBeInTheDocument();
+    });
+
+    it('shows image counter in modal navigation footer', () => {
+        render(<ProjectPreview {...baseProps} images={multiImages} />);
+        fireEvent.click(screen.getByLabelText('View image 1'));
+        fireEvent.click(screen.getByLabelText('View Screenshot 1 in fullscreen'));
+
+        // Modal should show counter for multiple images
+        const counters = screen.getAllByText(/\d+ \/ \d+/);
+        expect(counters.length).toBeGreaterThan(0);
+    });
+
+    it('renders liveUrl link when provided', () => {
+        render(<ProjectPreview {...baseProps} liveUrl="https://example.com" />);
+        const link = screen.getByLabelText('MY-PROJECT.SRC live project');
+        expect(link).toHaveAttribute('href', 'https://example.com');
+        expect(link).toHaveAttribute('target', '_blank');
+    });
+
+    it('does not render liveUrl link when omitted', () => {
+        render(<ProjectPreview {...baseProps} />);
+        expect(screen.queryByText('[ OPEN APP ]')).not.toBeInTheDocument();
+    });
+
+    it('closes modal on close button click', () => {
+        render(<ProjectPreview {...baseProps} images={multiImages} />);
+        fireEvent.click(screen.getByLabelText('View image 1'));
+        fireEvent.click(screen.getByLabelText('View Screenshot 1 in fullscreen'));
+        expect(screen.getByLabelText('Image preview modal')).toBeInTheDocument();
+
+        // Get all close buttons and click the modal one
+        const closeButtons = screen.getAllByLabelText('Close modal');
+        fireEvent.click(closeButtons[closeButtons.length - 1]);
+        expect(screen.queryByLabelText('Image preview modal')).not.toBeInTheDocument();
+    });
 });

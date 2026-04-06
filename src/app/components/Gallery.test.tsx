@@ -65,4 +65,35 @@ describe('Gallery Component', () => {
 
         expect(screen.queryByText('A collection')).not.toBeInTheDocument();
     });
+
+    it('wraps to last photo when navigating previous from first photo', () => {
+        render(<Gallery photos={mockPhotos} title="Gallery" />);
+
+        fireEvent.click(screen.getByLabelText('View Test Photo 1'));
+        fireEvent.click(screen.getByLabelText('Previous photo'));
+
+        expect(screen.getAllByText('Test Photo 2').length).toBeGreaterThan(0);
+    });
+
+    it('wraps to first photo when navigating next from last photo', () => {
+        render(<Gallery photos={mockPhotos} title="Gallery" />);
+
+        fireEvent.click(screen.getByLabelText('View Test Photo 2'));
+        fireEvent.click(screen.getByLabelText('Next photo'));
+
+        expect(screen.getAllByText('Test Photo 1').length).toBeGreaterThan(0);
+    });
+
+    it('renders photo metadata in dialog', () => {
+        render(<Gallery photos={mockPhotos} title="Gallery" />);
+
+        fireEvent.click(screen.getByLabelText('View Test Photo 1'));
+
+        // Dialog should be open with content
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(screen.getAllByText('Test Photo 1').length).toBeGreaterThan(0);
+        // Index counter appears in dialog
+        const counters = screen.queryAllByText(/01 \/ 02/);
+        expect(counters.length).toBeGreaterThan(0);
+    });
 });

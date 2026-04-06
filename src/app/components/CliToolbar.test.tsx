@@ -106,4 +106,72 @@ describe('CliToolbar', () => {
 
         expect(openMock).not.toHaveBeenCalled();
     });
+
+    it('closes terminal on Escape key', () => {
+        render(<CliToolbar />);
+        fireEvent.click(screen.getByLabelText('Activate command line'));
+        let input = screen.getByLabelText('Portfolio CLI command');
+        expect(input).toBeInTheDocument();
+
+        fireEvent.keyDown(input, { key: 'Escape' });
+
+        // Input should no longer be visible, clock should show
+        expect(screen.getByText('14')).toBeInTheDocument();
+    });
+
+    it('closes terminal on blur when input is empty', () => {
+        render(<CliToolbar />);
+        fireEvent.click(screen.getByLabelText('Activate command line'));
+        const input = screen.getByLabelText('Portfolio CLI command') as HTMLInputElement;
+
+        fireEvent.change(input, { target: { value: '' } });
+        fireEvent.blur(input);
+
+        // Should show clock indicator
+        expect(screen.getByText('14')).toBeInTheDocument();
+    });
+
+    it('keeps terminal active on blur when input has text', () => {
+        render(<CliToolbar />);
+        fireEvent.click(screen.getByLabelText('Activate command line'));
+        const input = screen.getByLabelText('Portfolio CLI command');
+
+        fireEvent.change(input, { target: { value: 'cd iteria' } });
+        fireEvent.blur(input);
+
+        // Input should still be visible 
+        expect(screen.getByLabelText('Portfolio CLI command')).toBeInTheDocument();
+    });
+
+    it('scrolls to top when scroll-to-top button is clicked', () => {
+        const scrollToMock = vi.fn();
+        vi.stubGlobal('scrollTo', scrollToMock);
+
+        render(<CliToolbar />);
+
+        // Simulate scroll to make button visible
+        Object.defineProperty(globalThis, 'scrollY', { value: 400, writable: true });
+        fireEvent.scroll(globalThis);
+
+        const topButton = screen.getByTitle('Scroll to top');
+        fireEvent.click(topButton);
+
+        expect(scrollToMock).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
+
+        vi.unstubAllGlobals();
+    });
+
+    it('displays clock when terminal is not active', () => {
+        render(<CliToolbar />);
+        expect(screen.getByText('14')).toBeInTheDocument();
+        expect(screen.getByText('30')).toBeInTheDocument();
+    });
+
+    it('clears command and focuses input on activation', () => {
+        render(<CliToolbar />);
+        fireEvent.click(screen.getByLabelText('Activate command line'));
+
+        const input = screen.getByLabelText('Portfolio CLI command') as HTMLInputElement;
+        expect(input).toHaveFocus();
+    });
 });
