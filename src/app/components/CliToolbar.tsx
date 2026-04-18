@@ -16,6 +16,10 @@ const LISTING_PROJECTS = ["iteria/", "leafy/"] as const;
 const USERNAME_PREFIXES = ["neo", "root", "byte", "hex", "quant", "sys"] as const;
 const USERNAME_SUFFIXES = ["fox", "node", "pulse", "orbit", "stack", "vector"] as const;
 const USERNAME_GUEST_FALLBACK = "guest_00";
+const USERNAME_DISCRIMINATOR_MAX = 100;
+const USERNAME_DISCRIMINATOR_WIDTH = 2;
+const USERNAME_RANDOM_BYTES_BITS = 32;
+const USERNAME_RANDOM_BYTES_RANGE = 2 ** USERNAME_RANDOM_BYTES_BITS;
 
 type ParsedCommand = {
     command: string;
@@ -32,10 +36,34 @@ function parseTerminalCommand(value: string): ParsedCommand {
     };
 }
 
+function getSecureRandomInt(maxExclusive: number): number {
+    if (maxExclusive <= 0) {
+        throw new Error(`Expected maxExclusive to be greater than 0, received ${maxExclusive}.`);
+    }
+
+    const cryptoObject = globalThis.crypto;
+
+    if (!cryptoObject?.getRandomValues) {
+        throw new Error("Secure random values are not available in this environment.");
+    }
+
+    const values = new Uint32Array(1);
+    const rejectionLimit = USERNAME_RANDOM_BYTES_RANGE - (USERNAME_RANDOM_BYTES_RANGE % maxExclusive);
+
+    let randomValue = 0;
+
+    do {
+        cryptoObject.getRandomValues(values);
+        randomValue = values[0];
+    } while (randomValue >= rejectionLimit);
+
+    return randomValue % maxExclusive;
+}
+
 function generateFakeTerminalUsername(): string {
-    const prefix = USERNAME_PREFIXES[Math.floor(Math.random() * USERNAME_PREFIXES.length)];
-    const suffix = USERNAME_SUFFIXES[Math.floor(Math.random() * USERNAME_SUFFIXES.length)];
-    const discriminator = `${Math.floor(Math.random() * 100)}`.padStart(2, "0");
+    const prefix = USERNAME_PREFIXES[getSecureRandomInt(USERNAME_PREFIXES.length)];
+    const suffix = USERNAME_SUFFIXES[getSecureRandomInt(USERNAME_SUFFIXES.length)];
+    const discriminator = `${getSecureRandomInt(USERNAME_DISCRIMINATOR_MAX)}`.padStart(USERNAME_DISCRIMINATOR_WIDTH, "0");
 
     return `${prefix}_${suffix}${discriminator}`;
 }

@@ -133,6 +133,22 @@ describe('CliToolbar', () => {
         expect(storedUsername).toMatch(/^[a-z]+_[a-z]+\d{2}$/);
     });
 
+    it('uses crypto-backed randomness when generating the terminal username', () => {
+        const getRandomValuesMock = vi.fn((values: Uint32Array) => {
+            values[0] = 0;
+            return values;
+        });
+
+        vi.stubGlobal('crypto', {
+            getRandomValues: getRandomValuesMock,
+        });
+
+        render(<CliToolbar />);
+
+        expect(localStorage.getItem(TERMINAL_USERNAME_STORAGE_KEY)).toBe('neo_fox00');
+        expect(getRandomValuesMock).toHaveBeenCalled();
+    });
+
     it('uses the stored terminal username in the listing header', () => {
         localStorage.setItem(TERMINAL_USERNAME_STORAGE_KEY, 'neo_vector42');
 
