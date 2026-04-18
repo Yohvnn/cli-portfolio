@@ -1,6 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 
+const TERMINAL_USERNAME_STORAGE_KEY = 'cli-portfolio:terminal-username';
+
 // Mock hooks before importing the component
 const mockToggleTheme = vi.fn();
 const mockToggleLang = vi.fn();
@@ -30,6 +32,7 @@ describe('CliToolbar', () => {
 
     beforeEach(() => {
         vi.clearAllMocks();
+        localStorage.clear();
         openMock = vi.fn();
         vi.stubGlobal('open', openMock);
     });
@@ -94,6 +97,79 @@ describe('CliToolbar', () => {
         fireEvent.keyDown(input, { key: 'Enter' });
 
         expect(openMock).toHaveBeenCalledWith('https://iteria.yohanncch.studio/', '_self');
+    });
+
+    it('redirects to leafy when command is cd leafy and Enter is pressed', () => {
+        render(<CliToolbar />);
+        fireEvent.click(screen.getByLabelText('Activate command line'));
+        const input = screen.getByLabelText('Portfolio CLI command');
+
+        fireEvent.change(input, { target: { value: 'cd "LEAFY"' } });
+        fireEvent.keyDown(input, { key: 'Enter' });
+
+        expect(openMock).toHaveBeenCalledWith('https://leafy.yohanncch.studio/', '_self');
+    });
+
+    it('shows a git bash style listing when ls is entered', () => {
+        render(<CliToolbar />);
+        fireEvent.click(screen.getByLabelText('Activate command line'));
+        const input = screen.getByLabelText('Portfolio CLI command');
+
+        fireEvent.change(input, { target: { value: 'ls' } });
+        fireEvent.keyDown(input, { key: 'Enter' });
+
+        expect(screen.getByRole('region', { name: 'Terminal output' })).toBeInTheDocument();
+        expect(screen.getByText('projects/')).toBeInTheDocument();
+        expect(screen.getByText('iteria/')).toBeInTheDocument();
+        expect(screen.getByText('leafy/')).toBeInTheDocument();
+    });
+
+    it('creates and persists a fake terminal username in localStorage', () => {
+        render(<CliToolbar />);
+
+        const storedUsername = localStorage.getItem(TERMINAL_USERNAME_STORAGE_KEY);
+
+        expect(storedUsername).toBeTruthy();
+        expect(storedUsername).toMatch(/^[a-z]+_[a-z]+\d{2}$/);
+    });
+
+    it('uses the stored terminal username in the listing header', () => {
+        localStorage.setItem(TERMINAL_USERNAME_STORAGE_KEY, 'neo_vector42');
+
+        render(<CliToolbar />);
+        fireEvent.click(screen.getByLabelText('Activate command line'));
+        const input = screen.getByLabelText('Portfolio CLI command');
+
+        fireEvent.change(input, { target: { value: 'ls' } });
+        fireEvent.keyDown(input, { key: 'Enter' });
+
+        expect(screen.getByText('neo_vector42')).toBeInTheDocument();
+    });
+
+    it('closes terminal output when close button is clicked', () => {
+        render(<CliToolbar />);
+        fireEvent.click(screen.getByLabelText('Activate command line'));
+        const input = screen.getByLabelText('Portfolio CLI command');
+
+        fireEvent.change(input, { target: { value: 'ls' } });
+        fireEvent.keyDown(input, { key: 'Enter' });
+
+        fireEvent.click(screen.getByLabelText('Close terminal output'));
+
+        expect(screen.queryByRole('region', { name: 'Terminal output' })).not.toBeInTheDocument();
+    });
+
+    it('closes terminal output when clicking outside of it', () => {
+        render(<CliToolbar />);
+        fireEvent.click(screen.getByLabelText('Activate command line'));
+        const input = screen.getByLabelText('Portfolio CLI command');
+
+        fireEvent.change(input, { target: { value: 'ls' } });
+        fireEvent.keyDown(input, { key: 'Enter' });
+
+        fireEvent.pointerDown(document.body);
+
+        expect(screen.queryByRole('region', { name: 'Terminal output' })).not.toBeInTheDocument();
     });
 
     it('does not redirect for unknown commands', () => {

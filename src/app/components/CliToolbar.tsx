@@ -4,6 +4,42 @@ import { useDarkMode } from "../hooks/useDarkMode";
 import { useLanguage } from "../hooks/useLanguage";
 import { useClock } from "../hooks/useClock";
 
+const EXTERNAL_COMMANDS = {
+    iteria: "https://iteria.yohanncch.studio/",
+    leafy: "https://leafy.yohanncch.studio/",
+} as const;
+
+const TERMINAL_USERNAME_STORAGE_KEY = "cli-portfolio:terminal-username";
+
+const LISTING_ROOT = "projects/";
+const LISTING_PROJECTS = ["iteria/", "leafy/"] as const;
+const USERNAME_PREFIXES = ["neo", "root", "byte", "hex", "quant", "sys"] as const;
+const USERNAME_SUFFIXES = ["fox", "node", "pulse", "orbit", "stack", "vector"] as const;
+const USERNAME_GUEST_FALLBACK = "guest_00";
+
+type ParsedCommand = {
+    command: string;
+    argument: string;
+};
+
+function parseTerminalCommand(value: string): ParsedCommand {
+    const [command = "", ...rest] = value.trim().split(/\s+/);
+    const argument = rest.join(" ").replaceAll(/^['"]|['"]$/g, "").toLowerCase();
+
+    return {
+        command: command.toLowerCase(),
+        argument,
+    };
+}
+
+function generateFakeTerminalUsername(): string {
+    const prefix = USERNAME_PREFIXES[Math.floor(Math.random() * USERNAME_PREFIXES.length)];
+    const suffix = USERNAME_SUFFIXES[Math.floor(Math.random() * USERNAME_SUFFIXES.length)];
+    const discriminator = `${Math.floor(Math.random() * 100)}`.padStart(2, "0");
+
+    return `${prefix}_${suffix}${discriminator}`;
+}
+
 /**
  * Fixed CLI-style toolbar with dark/light mode toggle, language switch, and scroll-to-top.
  */
@@ -14,9 +50,12 @@ export function CliToolbar() {
     const [showTop, setShowTop] = useState(false);
     const [terminalCommand, setTerminalCommand] = useState("");
     const [isTerminalActive, setIsTerminalActive] = useState(false);
+    const [isListingVisible, setIsListingVisible] = useState(false);
+    const [terminalUsername, setTerminalUsername] = useState(USERNAME_GUEST_FALLBACK);
     const terminalInputRef = useRef<HTMLInputElement>(null);
+    const listingRef = useRef<HTMLElement>(null);
     const time = useClock();
-    const [hours, minutes] = time.time.split(':');
+    const [hours, minutes] = time.time.split(":");
 
     useEffect(() => {
         const onScroll = () => setShowTop(window.scrollY > 300);
@@ -30,12 +69,48 @@ export function CliToolbar() {
         }
     }, [isTerminalActive]);
 
+    useEffect(() => {
+        const storedUsername = localStorage.getItem(TERMINAL_USERNAME_STORAGE_KEY);
+
+        if (storedUsername) {
+            setTerminalUsername(storedUsername);
+            return;
+        }
+
+        const generatedUsername = generateFakeTerminalUsername();
+        localStorage.setItem(TERMINAL_USERNAME_STORAGE_KEY, generatedUsername);
+        setTerminalUsername(generatedUsername);
+    }, []);
+
+    useEffect(() => {
+        if (!isListingVisible) {
+            return;
+        }
+
+        const onPointerDown = (event: PointerEvent) => {
+            if (!listingRef.current?.contains(event.target as Node)) {
+                setIsListingVisible(false);
+            }
+        };
+
+        document.addEventListener("pointerdown", onPointerDown);
+        return () => document.removeEventListener("pointerdown", onPointerDown);
+    }, [isListingVisible]);
+
     const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
     const handleTerminalCommand = () => {
-        const normalized = terminalCommand.trim().replaceAll(/\s+/g, " ").toLowerCase();
-        if (normalized === "cd iteria") {
-            globalThis.open("https://iteria.yohanncch.studio/", "_self");
+        const { command, argument } = parseTerminalCommand(terminalCommand);
+
+        setIsListingVisible(false);
+
+        if (command === "cd" && argument in EXTERNAL_COMMANDS) {
+            globalThis.open(EXTERNAL_COMMANDS[argument as keyof typeof EXTERNAL_COMMANDS], "_self");
+            return;
+        }
+
+        if (command === "ls") {
+            setIsListingVisible(true);
         }
     };
 
@@ -44,7 +119,54 @@ export function CliToolbar() {
             aria-label="CLI controls"
             className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background/90 backdrop-blur-sm"
         >
-            <div className="max-w-4xl mx-auto flex items-center justify-between px-6 py-3">
+            <div className="relative mx-auto flex max-w-4xl items-end justify-between px-6 py-3">
+                {isListingVisible ? (
+                    <section
+                        ref={listingRef}
+                        aria-label="Terminal output"
+                        className="absolute bottom-full left-6 mb-3 w-[min(24rem,calc(100vw-3rem))] overflow-hidden rounded-2xl border border-border bg-background/95 text-foreground shadow-[0_24px_80px_rgba(0,0,0,0.3)]"
+                    >
+                        <div className="flex items-center justify-between border-b border-border bg-background/80 px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-foreground/60">
+                            <span>
+                                {t("nav.cliGreeting", "status 200: authorized user")}{" "}
+                                <span className="text-accent">{terminalUsername}</span>
+                            </span>
+                            <span>{t("nav.cliShellTitle", "ystudio bash")}</span>
+                        </div>
+                        <div className="px-4 py-3 font-mono text-[11px] sm:text-xs">
+                            <div className="mb-3 flex items-center justify-between">
+                                <div className="flex items-center gap-2 text-accent">
+                                    <span>~/ycch</span>
+                                    <span className="text-foreground">$</span>
+                                    <span className="text-foreground">ls</span>
+                                </div>
+                                <button
+                                    type="button"
+                                    aria-label={t("nav.closeTerminalOutput", "Close terminal output")}
+                                    onClick={() => setIsListingVisible(false)}
+                                    className="rounded border border-border px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] text-foreground/70 transition-colors duration-200 hover:border-accent hover:text-accent"
+                                >
+                                    {t("nav.closeButton", "close")}
+                                </button>
+                            </div>
+                            <div className="rounded-lg border border-border bg-background/70 px-3 py-2">
+                                <div className="text-accent">{LISTING_ROOT}</div>
+                                <div className="mt-1 space-y-1 text-foreground/90">
+                                    {LISTING_PROJECTS.map((project) => (
+                                        <div key={project} className="flex items-center gap-2">
+                                            <span className="text-foreground/50">|-</span>
+                                            <span>{project}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="mt-3 text-[10px] uppercase tracking-[0.18em] text-foreground/50">
+                                {t("nav.cliHint", "hint: cd iteria | cd leafy")}
+                            </div>
+                        </div>
+                    </section>
+                ) : null}
+
                 {/* prompt + live clock */}
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2 min-w-[12rem] sm:min-w-[16rem]">
@@ -77,6 +199,7 @@ export function CliToolbar() {
                                         if (event.key === "Escape") {
                                             setTerminalCommand("");
                                             setIsTerminalActive(false);
+                                            setIsListingVisible(false);
                                             terminalInputRef.current?.blur();
                                         }
                                     }}

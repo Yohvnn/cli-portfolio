@@ -14,7 +14,11 @@
     "nextButton": "SUIV",
     "topButton": "HAUT",
     "darkButton": "NUIT",
-    "lightButton": "JOUR"
+    "lightButton": "JOUR",
+    "cliGreeting": "user:",
+    "cliShellTitle": "bash ystudio",
+    "closeTerminalOutput": "Fermer",
+    "cliHint": "indice : cd iteria | cd leafy"
   },
   "profile": {
     "name": "Coucou, moi c'est YOHANN!",
